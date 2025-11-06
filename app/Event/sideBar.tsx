@@ -1,97 +1,106 @@
-"use client"
+"use client";
 
-import { CalendarDays, ChevronRight, Handshake, Users } from "lucide-react"
-import { User } from 'lucide-react';
+import {
+  CalendarDays,
+  ChevronRight,
+  Handshake,
+  House,
+  LogOut,
+  Users,
+  User,
+} from "lucide-react";
 
-import Link from "next/link"
+import Link from "next/link";
 import {
   Sidebar,
   SidebarHeader,
   SidebarContent,
-  SidebarMenuButton,
-} from "@/components/ui/sidebar"
+  SidebarFooter,
+} from "@/components/ui/sidebar";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@radix-ui/react-collapsible"
+} from "@radix-ui/react-collapsible";
 
 function SideBar() {
   return (
     <Sidebar>
-      <div className="h-full bg-[url('/sidebarimg.png')] bg-cover bg-center">
-        {/* <div className="h-full bg-cover bg-center"> */}
+      <div className="h-full bg-[url('/sidebarimg.png')] bg-cover bg-center w-full">
         <div className="bg-black/30 h-full w-full flex flex-col">
-
-
           <SidebarHeader>
-            <div className="flex items-center gap-2 p-4">
+            <div className="flex items-center gap-2 p-3">
               <Handshake className="text-greencol hidden md:block" />
               <h1 className="text-2xl font-bold text-white">Association</h1>
             </div>
           </SidebarHeader>
 
-
-          <SidebarContent className="mt-4 px-3 w-full">
-
-            <div className="group/hovermenu flex flex-row items-center text-white gap-2 p-3 rounded-xl hover:bg-white/20 ">
-              <User className="group-hover/hovermenu:text-hovergreen" size={16} />
+          <SidebarContent className="px-3 w-full space-y-1">
+            {/* Home */}
+            
+            <div className="relative group/hovermenu flex items-center text-white gap-2 p-3 rounded-xl hover:bg-white/30 transition-colors duration-300 ease-in-out">
+              <div className="absolute left-0 mr-2 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
+              <House className="group-hover/hovermenu:text-hovergreen" size={16} />
               <Link
                 href="#"
-                className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px] "
+                className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px]"
               >
-                profile
-
+                Home
               </Link>
             </div>
+          
 
+            {/* Events Collapsible */}
             <Collapsible className="group/collapsible">
-              <CollapsibleTrigger className="flex items-center group/hovermenu justify-between w-full text-white font-medium p rounded-xl hover:bg-white/10 p-3 ">
-
-                <div className="flex flex-row gap-2 ">
+              <CollapsibleTrigger className="relative flex items-center justify-between w-full text-white font-medium rounded-xl hover:bg-white/30 p-3 transition-colors duration-300 ease-in-out group/hovermenu">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
+                <div className="flex flex-row gap-2">
                   <CalendarDays size={16} className="group-hover/hovermenu:text-hovergreen" />
-                  <span className="text-[14px] group-hover/hovermenu:text-hovergreen">Events</span>
+                  <span className="text-[14px] group-hover/hovermenu:text-hovergreen">
+                    Events
+                  </span>
                 </div>
-                <ChevronRight className="ml-2 transition-transform duration-300  group-hover/hovermenu:text-hovergreen group-data-[state=open]/collapsible:rotate-90" size={16} />
+                <ChevronRight
+                  className="ml-2 transition-transform duration-400 group-hover/hovermenu:text-hovergreen group-data-[state=open]/collapsible:rotate-90"
+                  size={16}
+                />
               </CollapsibleTrigger>
 
               <CollapsibleContent className="flex flex-col space-y-2 text-[12px] mt-2 px-10 text-gray-300">
-
-                <li><Link
-                  href="/Event/myEvent"
-                  className="text-gray-300  hover:text-hovergreen"
-                >
-                  My Events
-                </Link></li>
                 <li>
-                  <Link
-                    href="#"
-                    className="text-gray-300 hover:text-hovergreen "
-                  >
-                    All Events
-                  </Link></li>
+                  <Link href="/Event/EventCreate" className="hover:text-hovergreen">
+                    Create Event
+                  </Link>
+                </li>
                 <li>
-                  <Link
-                    href="#"
-                    className="text-gray-300 hover:text-hovergreen"
-                  >
+                  <Link href="/Event/myEvent" className="hover:text-hovergreen">
+                    MyEvent
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-hovergreen">
                     My Tickets
-                  </Link></li>
+                  </Link>
+                </li>
               </CollapsibleContent>
             </Collapsible>
 
-
-            <div className="flex flex-row items-center text-white group/hovermenu gap-2 p-3  group-hover/hovermenu:border-l-hovergreen  rounded-2xl  hover:bg-white/10 ">
+            {/* Membership */}
+            <div className="relative group/hovermenu flex items-center text-white gap-2 p-3 rounded-xl hover:bg-white/30 transition-colors duration-300 ease-in-out">
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
               <Users className="group-hover/hovermenu:text-hovergreen" size={16} />
               <Link
                 href="#"
-                className=" text-white font-medium group-hover/hovermenu:text-hovergreen  text-[14px]"
+                className="text-white font-medium group-hover/hovermenu:text-hovergreen text-[14px]"
               >
                 Membership
-
               </Link>
             </div>
-            <div className="flex flex-row items-center text-white group/hovermenu gap-2 p-3 rounded-xl hover:bg-white/10 ">
+
+            {/* Alumini */}
+            <div className="relative group/hovermenu flex items-center text-white gap-2 p-3 rounded-xl hover:bg-white/30 transition-colors duration-300 ease-in-out">
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
+              <User className="group-hover/hovermenu:text-hovergreen" size={16} />
               <Link
                 href="#"
                 className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px]"
@@ -99,26 +108,33 @@ function SideBar() {
                 Alumini
               </Link>
             </div>
-            <div className="flex flex-row items-center text-white group/hovermenu gap-2 p-3 rounded-xl hover:bg-white/10 transition-all duration-300 group-hover/hovermenu:pl-1">
+
+            {/* Profile */}
+            <div className="relative group/hovermenu flex items-center text-white gap-2 p-3 rounded-xl hover:bg-white/30 transition-colors duration-300 ease-in-out">
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
+              <User className="group-hover/hovermenu:text-hovergreen" size={16} />
               <Link
-                href="#"
-                className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px] transition-colors duration-300"
+                href="/profile"
+                className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px]"
               >
                 Profile
               </Link>
             </div>
-
-
-
           </SidebarContent>
 
+          <SidebarFooter className="text-[14px] p-5">
+            <label className="text-gray-400 px-3">
+              <span>Version: 4.1</span>
+            </label>
+            <div className="flex items-center gap-2 text-white p-3">
+              <LogOut className="w-4 h-4" />
+              <Link href="#">Logout</Link>
+            </div>
+          </SidebarFooter>
         </div>
       </div>
-
-
     </Sidebar>
-
-  )
+  );
 }
 
-export default SideBar
+export default SideBar;

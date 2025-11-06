@@ -5,7 +5,7 @@ import HeaderEvent from "./Event/headerEvent";
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
-  weight: ["400", "500"], // choose weights you need
+  weight: ["400",], // choose weights you need
 });
 
 

@@ -7,36 +7,53 @@ import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
-  TableCaption,
+ 
   TableCell,
+ 
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import HeaderEvent from "../headerEvent";
-import SideBar from "../sideBar";
+import {
+  Pagination,
+  PaginationContent,
+
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
 
 function Eventbody() {
   const events = [
     {
-      eventTitle: "assosiation inaugration",
+      eventTitle: "Assosiation inaugration",
       catagory: "middle",
       type: "free",
       date: "12/2/3000",
+      location: "delhi",
       status: "pending",
     },
     {
-      eventTitle: "assosiation inaugration",
+      eventTitle: "Assosiation inaugration",
       catagory: "middle",
-      type: "paid",
-      date: "12/2/3000",
+      type: "Paid",
+      date: "21st november,2023 11:00",
+      location: "delhi",
       status: "approved",
     },
     {
-      eventTitle: " meeting",
+      eventTitle: " Meeting",
       catagory: "middle",
-      type: "paid",
+      type: "Paid",
       date: "12/2/3000",
+      location: "delhi",
       status: "approved",
     },
   ];
@@ -56,11 +73,11 @@ function Eventbody() {
   );
 
   return (
-    <div className="flex flex-col w-full px-10">
-      <h1 className="text-[24px] font-medium p-5">My Event</h1>
-      <div className="bg-white p-8 border rounded-2xl">
+    <div className="flex flex-col w-full px-8">
+      <h1 className="text-[24px] font-medium  mt-5">My Event</h1>
+      <div className="bg-white p-6 border rounded-2xl mt-3 ">
         <div className="flex sm:flex-row md:justify-between flex-col items-center">
-          <div className=" h-10 md:w-[300px] w-full items-center flex flex-row gap-3 px-2 text-gray-700 border rounded-3xl  bg-black/3">
+          <div className=" h-10 md:w-[300px] w-full items-center flex flex-row gap-2 px-4 text-gray-700 border rounded-3xl  bg-black/3">
             {" "}
             <Search size={14} />
             <input
@@ -71,91 +88,138 @@ function Eventbody() {
               onChange={(e) => setSearch(e.target.value)}
             ></input>
           </div>
-          <div className="flex flex-row gap-3 items-center h-10 ">
-            <h1 className="text-gray-500 p-2 text-[13px] ">Show</h1>
-            <select className="h-10 w-10">
-              <option>10</option>
-              <option>10</option>
-              <option>10</option>
-            </select>
-            <h1 className="text-gray-500 text-[13px]">entries</h1>
+          <div className="flex flex-row gap-3 items-center  px-2">
+            <h1 className="text-gray-500  text-[14px] ">Show</h1>
+            <div className="flex flex-col items-center">
+              <Select>
+                <SelectTrigger className="border px-5 font-semibold text-[16px]">
+                  <span>10</span>
+                </SelectTrigger>
+                <SelectContent className="w-10">
+                  <SelectItem value="10">
+                    <span>10</span>
+                  </SelectItem>
+                  <SelectItem value="1">
+                    <span>10</span>
+                  </SelectItem>
+                  <SelectItem value="2">
+                    <span>10</span>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <h1 className="text-gray-500 text-[14px]">entries</h1>
           </div>
         </div>
         <div className="mt-10">
           <Table>
             <TableHeader>
-              <TableRow className="text-[14px] bg-black/3 rounded-3xl ">
+              <TableRow className="text-[14px] bg-black/3 rounded-3xl border tracking-tight">
                 <TableHead>Event Title</TableHead>
-                <TableHead>catogary</TableHead>
+                <TableHead>Catogary</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead className="">Date & Time</TableHead>
+                <TableHead className="">Location</TableHead>
+
                 <TableHead className=" text-center align-middle">
                   status
                 </TableHead>
-                <TableHead className="text-right ">Action</TableHead>
+                <TableHead className="flex justify-center items-center ">
+                  Action
+                </TableHead>
               </TableRow>
             </TableHeader>
             {filteredEvents.map((items, id) => (
               <TableBody key={id}>
-                <TableRow className="pt-10 text-[14px] font-medium  ">
-                  <TableCell className=" text-gray-500  ">
+                <TableRow className="pt-10 text-[14px] font-medium ">
+                  <TableCell className=" text-gray-500 p-7 flex tracking-tight ">
                     {items.eventTitle}
                   </TableCell>
                   <TableCell>
                     {" "}
-                    <Badge className=" bg-[#E6EF84] px-5 text-black">
+                    <Badge className=" bg-[#E6EF84] px-5 py-1 text-black">
                       {items.catagory}
                     </Badge>
                   </TableCell>
                   <TableCell>
                     <Badge
-                      className={`${
-                        items.type === "paid"
-                          ? "bg-[#84DCEF] text-[#1B1C17]"
-                          : "bg-[#EAEAEA] text-[#707070]"
-                      } text-[14px] px-2 `}
+                      className={`${items.type === "Paid"
+                        ? "bg-[#84DCEF] text-[#1B1C17]"
+                        : "bg-[#EAEAEA] text-[#707070]"
+                        } text-[14px] px-2 `}
                     >
                       {items.type}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-gray-500">{items.date}</TableCell>
+                  <TableCell className="text-gray-500 tracking-tight w-[100px]">
+                    {items.date}
+                  </TableCell>
+                  <TableCell className=" text-gray-500 tracking-tight">
+                    {items.location}
+                  </TableCell>
 
                   <TableCell className={" text-center align-middle"}>
                     <Badge
-                      className={`${
-                        items.status === "approved"
-                          ? "bg-green-100 text-green-500 "
-                          : "bg-red-50 text-[#F5B40A]"
-                      } rounded w-20 h-7 text-[14px] `}
+                      className={`${items.status === "approved"
+                        ? "bg-green-100 text-green-500 "
+                        : "bg-red-50 text-[#F5B40A]"
+                        } rounded w-20 h-7 text-[14px]  tracking-tight`}
                     >
                       {" "}
                       {items.status}
                     </Badge>
                   </TableCell>
 
-                  <TableCell className="text-gray-500 text-right flex flex-row justify-end gap-3 ">
+                  <TableCell className="text-gray-300 justify-center flex flex-row gap-3 items-center ">
                     <button onClick={edit}>
                       <Edit
-                        size={20}
-                        className="cursor-pointer hover:text-blue-500  "
+                        size={25}
+                        className="cursor-pointer hover:text-blue-500 border rounded-2xl p-1"
                       />
                     </button>
 
                     <button onClick={trash}>
                       <Trash2
-                        size={18}
-                        className="cursor-pointer hover:text-red-500 "
+                        size={25}
+                        className="cursor-pointer hover:text-red-500 border rounded-2xl p-1"
                       />
                     </button>
                     <Eye
-                      size={18}
-                      className="cursor-pointer hover:text-gray-700"
+                      size={25}
+                      className="cursor-pointer hover:text-gray-700 border rounded-2xl p-1"
                     />
                   </TableCell>
                 </TableRow>
               </TableBody>
-            ))}
+            ))} 
+            
           </Table>
+          <div className="flex flex-row justify-between w-full items-center">
+            
+              <span className="text-[14px] text-gray-400 w-full ">
+                showing 1 to 4 of 4 entries
+              </span>
+             
+              <Pagination  className="mt-2 ">
+                <PaginationContent >
+                  <PaginationItem>
+                    <PaginationPrevious href="#" className="border border-gray-400  "/>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink
+                      href="#"
+                      className="bg-greencol hover:bg-hovergreen"
+                    >
+                      1
+                    </PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext href="#" className="border border-gray-400" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+          </div>
+
           {popup && (
             <div className="fixed inset-0 flex items-center justify-center bg-black/40">
               <div className="bg-white p-6 rounded-lg shadow-lg">

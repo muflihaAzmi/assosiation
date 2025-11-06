@@ -9,7 +9,7 @@ function Eventlayout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className='flex flex-col h-screen bg-pink-50'>
+    <div className='flex flex-col h-full bg-pink-50 font-sansserif  '>
       <SidebarProvider>
         {/* <HeaderEvent/> */}
         <SideBar/>
