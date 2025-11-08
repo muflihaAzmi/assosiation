@@ -13,7 +13,7 @@ import { ChevronDownIcon, X } from "lucide-react";
 
 function EditProfile() {
     const [open, SetOpen] = useState(false);
-    const [formData, setFormData] = useState([
+    const formData =[
         { label: "Full Name", name: "fullName", type: "text", value: "" },
         { label: "Nick Name", name: "nickName", type: "text", value: "" },
         {
@@ -24,12 +24,12 @@ function EditProfile() {
             options: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],
         },
         { label: "Birth Date", name: "birthDate", type: "date", value: "" },
-    ]);
-    const handleChange = ({ index, newValue }: { index: number; newValue: string }) => {
-        const updated = [...formData];
-        updated[index].value = newValue;
-        setFormData(updated);
-    };
+    ];
+    // const handleChange = ({ index, newValue }: { index: number; newValue: string }) => {
+    //     const updated = [...formData];
+    //     updated[index].value = newValue;
+    //     setFormData(updated);
+    // };
     const ContactInfo = [
         {
             label: "Phone Number",
@@ -130,7 +130,7 @@ function EditProfile() {
                     </div>
                 </div>
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full max-w-[800px] mt-8 ">
-                    {formData.map((item) => (
+                    {formData.map((item,) => (
                         <div key={item.name} className="flex flex-col relative gap-2">
                             <label className=" bg-white px-2 sm:px-3 text-gray-400 text-[12px] font-medium  absolute   md:-top-3 -top-2   left-5">
                                 {item.label}
@@ -139,7 +139,7 @@ function EditProfile() {
                             {item.type === "select" ? (
                                 <Select
                                     value={item.value}
-                                    onValueChange={(value) => handleChange(value)}
+                                   
                                 >
                                     <SelectTrigger className="w-full  px-5 py-6 border hover:border-hovergreen rounded-xl ">
                                         <SelectValue placeholder={`Select ${item.label}`} />
@@ -159,7 +159,7 @@ function EditProfile() {
                                 <Input
                                     type={item.type}
                                     value={item.value}
-                                    onChange={(e) => handleChange(e.target.value)}
+                                 
                                     placeholder={`Enter ${item.label}`}
                                     className="px-5 py-8 w-full lg:max-w-[400px] text-[14px] hover:border-hovergreen rounded-xl placeholder:text-gray-400 "
                                 />
@@ -211,7 +211,7 @@ function EditProfile() {
                 </h1>
                 <div>
                     {open && (
-                        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-10">
+                        <div className="fixed inset-0 bg-black/30 flex items-center justify-center ">
                             <div className="w-[480px] bg-white flex flex-col p-6 rounded-3xl shadow-lg  gap-4">
                                 <div className="flex justify-between flex-row  w-full ">
                                     <h1 className="text-[20px] text-[#1b1c17]">Add Info</h1>

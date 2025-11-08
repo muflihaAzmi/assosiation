@@ -32,7 +32,9 @@ import {
 
 function Eventbody() {
   const events = [
+
     {
+     
       eventTitle: "Assosiation inaugration",
       catagory: "middle",
       type: "free",
@@ -41,6 +43,7 @@ function Eventbody() {
       status: "pending",
     },
     {
+     
       eventTitle: "Assosiation inaugration",
       catagory: "middle",
       type: "Paid",
@@ -49,6 +52,7 @@ function Eventbody() {
       status: "approved",
     },
     {
+      
       eventTitle: " Meeting",
       catagory: "middle",
       type: "Paid",
@@ -68,6 +72,7 @@ function Eventbody() {
   const trash = () => {
     setdeleted((toggle) => !toggle);
   };
+  
   const filteredEvents = events.filter((e) =>
     e.eventTitle.toLowerCase().includes(search.toLowerCase())
   );
@@ -114,13 +119,13 @@ function Eventbody() {
         <div className="mt-10">
           <Table>
             <TableHeader>
-              <TableRow className="text-[14px] bg-black/3 rounded-3xl border tracking-tight">
-                <TableHead>Event Title</TableHead>
+          
+              <TableRow className="text-[14px] bg-black/3 rounded-3xl border tracking-tight">  
+                <TableHead >eventTitle</TableHead>
                 <TableHead>Catogary</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead className="">Date & Time</TableHead>
                 <TableHead className="">Location</TableHead>
-
                 <TableHead className=" text-center align-middle">
                   status
                 </TableHead>
@@ -129,9 +134,10 @@ function Eventbody() {
                 </TableHead>
               </TableRow>
             </TableHeader>
-            {filteredEvents.map((items, id) => (
-              <TableBody key={id}>
-                <TableRow className="pt-10 text-[14px] font-medium ">
+           
+              <TableBody>
+                     {filteredEvents.map((items, id) => (
+                <TableRow key={id}className="pt-10 text-[14px] font-medium ">
                   <TableCell className=" text-gray-500 p-7 flex tracking-tight ">
                     {items.eventTitle}
                   </TableCell>
@@ -190,8 +196,9 @@ function Eventbody() {
                     />
                   </TableCell>
                 </TableRow>
+                  ))} 
               </TableBody>
-            ))} 
+          
             
           </Table>
           <div className="flex flex-row justify-between w-full items-center">
