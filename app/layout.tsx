@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import HeaderEvent from "./Event/headerEvent";
+import { TransactionProvider } from "./auth";
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
@@ -21,8 +22,10 @@ export default function RootLayout({
       <body
         className={`${interTight.className}`}
       >
+   
 
         {children}
+       
       </body>
     </html>
   );

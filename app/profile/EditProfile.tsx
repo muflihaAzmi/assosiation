@@ -211,7 +211,7 @@ function EditProfile() {
                 </h1>
                 <div>
                     {open && (
-                        <div className="fixed inset-0 bg-black/30 flex items-center justify-center ">
+                        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-10">
                             <div className="w-[480px] bg-white flex flex-col p-6 rounded-3xl shadow-lg  gap-4">
                                 <div className="flex justify-between flex-row  w-full ">
                                     <h1 className="text-[20px] text-[#1b1c17]">Add Info</h1>
@@ -290,7 +290,7 @@ function EditProfile() {
                 </div>
                 <div className="flex  gap-3 ">
                     <button className="bg-greencol hover:bg-hovergreen text-[15px] text-black py-4 px-8 font-semibold rounded-2xl">
-                        Save Chages
+                        Save Changes
                     </button>
                 </div>
             </div>

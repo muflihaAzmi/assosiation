@@ -1,16 +1,39 @@
-import EventTable from "../components/Eventtable";
+
+"use client"
+import React, { useState } from 'react'
+import Transaction from './[id]/page'
+import EventTable from '../Event/components/Eventtable'
+
+function Page() {
 
 
-export default function MainPage() {
+
+  type EventItem = {
+    eventTitle: string;
+    catagory: string;
+    type: string;
+    date: string;
+    location: string;
+    action: string;
+  };
+
+  type columns = {
+    label: string;
+    key: keyof EventItem;
+  };
+
+
+
   const columns = [
     { label: "Event Title", key: "eventTitle" },
     { label: "Category", key: "catagory" },
     { label: "Type", key: "type" },
     { label: "Date & Time", key: "date" },
     { label: "Location", key: "location" },
-    
+
     { label: "Action", key: "action" },
   ];
+
 
   const events = [
     {
@@ -19,8 +42,8 @@ export default function MainPage() {
       type: "Free",
       date: "12/2/3000",
       location: "Delhi",
-      
-      action:"Reservation"
+
+      action: "Reservation"
     },
     {
       eventTitle: "Annual Meeting",
@@ -28,15 +51,25 @@ export default function MainPage() {
       type: "Paid",
       date: "21 Nov, 2023 11:00",
       location: "Delhi",
-     
-      action:"Reservation"
+
+      action: "reservation"
     },
   ];
 
-
   return (
     <div>
-      <EventTable columns={columns} events={events} mainheading="All Events" />
+      <EventTable
+        events={events}
+        columns={columns}
+        mainheading="Upcoming Events"
+
+      />
+    
+
+
     </div>
-  );
+
+  )
 }
+
+export default Page

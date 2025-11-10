@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { MessageCircle, ThumbsUp } from "lucide-react";
@@ -68,8 +68,10 @@ const Home: React.FC = () => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handlePostComment();
+      hide(e);
     }
   };
+
   useEffect(() => {
   const storedComments = localStorage.getItem("comments");
   if (storedComments) {
@@ -96,9 +98,19 @@ useEffect(()=>{
   localStorage.setItem("counts",JSON.stringify(commentCount));
 })
 
+const hide=(e:React.KeyboardEvent<HTMLTextAreaElement>)=>{
+   if (e.key === "Enter" && !e.shiftKey) {
+      toast("comment added");
+    } else {
+      setError("");
+      toast("removed");
+      
+    }
+}
 
 function Hidden(){
-   sethidden((prev)=>!prev)
+   sethidden((prev)=>!prev);
+  
 }
 
   return (
@@ -195,13 +207,22 @@ function Hidden(){
 
         </div>
         )}
+        <div className="flex items-center gap-2 p-2">
+         <Image
+            src="/profile.png"
+            alt="Profile image"
+            width={30}
+            height={10}
+            className="rounded-full border-1 border-greencol object-cover"
+          />
         <textarea
-          placeholder="comment something"
-          className="text-[14px] focus:outline-0 w-full mt-2"
+          placeholder="comment something...."
+          className="text-[14px] focus:outline-0 w-full mt-4"
           value={commentText}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setCommentText(e.target.value)}
           onKeyDown={handleCommentKeyDown}
         />
+        </div>
       </div>
     </div>
   );

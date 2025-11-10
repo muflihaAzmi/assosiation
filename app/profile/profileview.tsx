@@ -6,7 +6,7 @@ function Profileview() {
         <div className='md:px-3 py-8'>
             <div className="flex flex-row flex-wrap items-center justify-between  ">
 
-                <div className="flex items-center pt-8 gap-4 h-[110px]">
+                <div className="flex items-center pt-8 gap-4 h-20">
                     <Image
                         src="/profile.png"
                         alt="Profile image"

@@ -25,6 +25,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
+import Link from "next/link";
 
 
 // const [show ,setShow]=useState(false);
@@ -55,8 +56,9 @@ interface EventTableProps {
 // eslint-disable-next-line react-hooks/rules-of-hooks
 
 
-const EventTable: React.FC<EventTableProps> = ({ columns, events, mainheading }) => {
+const Recipts: React.FC<EventTableProps> = ({ columns, events, mainheading }) => {
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [search, setSearch] = useState("");
 
 
@@ -122,92 +124,70 @@ const EventTable: React.FC<EventTableProps> = ({ columns, events, mainheading })
             </TableHeader>
 
             <TableBody>
-              {filteredEvents.map((item, id) => (
-                <TableRow key={id} className="text-[14px] font-medium">
-                  {columns.map((col) => {
-                    const value = item[col.key];
+  {filteredEvents.map((item, id) => (
+    <TableRow key={id} className="text-[14px] font-medium">
+      {columns.map((col) => {
+        const value = item[col.key];
 
-                    // 🟡 Category Badge
-                    if (col.key === "catagory") {
-                      return (
-                        <TableCell key={col.key} className="py-5">
-                          <Badge className="bg-[#E6EF84] px-5 py-1 text-black">
-                            {value}
-                          </Badge>
-                        </TableCell>
-                      );
-                    }
+        if (col.key === "catagory") {
+          return (
+            <TableCell key={col.key} className="py-5">
+              <Badge className="bg-[#E6EF84] px-5 py-1 text-black">
+                {value}
+              </Badge>
+            </TableCell>
+          );
+        }
 
-                    // 🔵 Type Badge
-                    if (col.key === "type") {
-                      return (
-                        <TableCell key={col.key} className="py-5">
-                          <Badge
-                            className={`${value === "Paid"
-                                ? "bg-[#84DCEF] text-[#1B1C17]"
-                                : "bg-[#EAEAEA] text-[#707070]"
-                              } text-[14px] px-2 `}
-                          >
-                            {value}
-                          </Badge>
-                        </TableCell>
-                      );
-                    }
+        if (col.key === "type") {
+          return (
+            <TableCell key={col.key} className="py-5">
+              <Badge
+                className={`${value === "Paid"
+                  ? "bg-[#84DCEF] text-[#1B1C17]"
+                  : "bg-[#EAEAEA] text-[#707070]"
+                  } text-[14px] px-2 `}
+              >
+                {value}
+              </Badge>
+            </TableCell>
+          );
+        }
 
-                    // 🟢 Status Badge
-                    if (col.key === "location") {
-                      return (
-                        <TableCell
-                          key={col.key}
-                          className="text-start align-middle py-5"
-                        >
+        if (col.key === "location") {
+          return (
+            <TableCell key={col.key} className="text-start align-middle py-5">
+              {value}
+            </TableCell>
+          );
+        }
 
-                          {value}
+        if (col.key === "action") {
+          return (
+            <TableCell
+              key={col.key}
+              className="text-black underline justify-end flex flex-row gap-3 py-5 items-center"
+            >
+              <Link
+                href=""  // ✅ Fixed HERE
+                target="_blank"
+                className="underline text-black"
+              >
+                {value}
+              </Link>
+            </TableCell>
+          );
+        }
 
-                        </TableCell>
-                      );
-                    }
-
-                    // ⚙️ Action Buttons
-                    // if (col.key === "action"){
-                    //   return (
-                    //     <TableCell
-                    //       key={col.key}
-                    //       className="text-black underline justify-end flex flex-row gap-3 py-5 items-center"
-                    //     >
-                    //     <Link href="#">{value}</Link>
-                    //     </TableCell>
-                    //   );
-                    // }
-                    if (col.key === "action") {
-                      return (
-                        <TableCell
-                          key={col.key}
-                          className="text-black underline justify-end flex flex-row gap-3 py-5 items-center"
-                        >
-                          <button
-                           
-                            className="underline text-black"
-                          >
-                            {value}
-                          </button>
-                        </TableCell>
-                      );
-                    }
-
-                    // Default Cell
-                    return (
-                      <TableCell
-                        key={col.key}
-                        className="text-gray-500 tracking-tight"
-                      >
-                        {value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
-            </TableBody>
+        return (
+          <TableCell key={col.key} className="text-gray-500 tracking-tight">
+            {value}
+          </TableCell>
+        );
+      })}
+    </TableRow>
+  ))}
+</TableBody>
           </Table>
 
           {/* 📄 Pagination Footer */}
@@ -249,4 +229,4 @@ const EventTable: React.FC<EventTableProps> = ({ columns, events, mainheading })
   );
 };
 
-export default EventTable;
+export default Recipts;
