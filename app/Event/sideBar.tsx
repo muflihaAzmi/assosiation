@@ -102,10 +102,10 @@ function SideBar() {
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
               <User className="group-hover/hovermenu:text-hovergreen" size={16} />
               <Link
-                href="#"
+                href="/components"
                 className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px]"
               >
-                Alumini
+                Transaction
               </Link>
             </div>
 
@@ -118,6 +118,16 @@ function SideBar() {
                 className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px]"
               >
                 Profile
+              </Link>
+            </div>
+            <div className="relative group/hovermenu flex items-center text-white gap-2 p-3 rounded-xl hover:bg-white/30 transition-colors duration-300 ease-in-out">
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
+              <User className="group-hover/hovermenu:text-hovergreen" size={16} />
+              <Link
+                href="#"
+                className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px]"
+              >
+              Settings
               </Link>
             </div>
           </SidebarContent>

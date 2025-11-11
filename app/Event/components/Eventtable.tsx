@@ -52,7 +52,7 @@ interface EventTableProps {
   mainheading: string
 }
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
+
 
 
 const EventTable: React.FC<EventTableProps> = ({ columns, events, mainheading }) => {

@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CircleAlert, Edit, Eye, Search, Trash2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Search } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -26,45 +25,43 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import Link from "next/link";
+import Transaction from "./transaction";
+import { motion } from "framer-motion";
 
+// 🧩 Type Definitions
+type Event = {
+  user: string;
+  purpose: string;
+  transactionID: string;
+  payment: string;
+  Date: string;
+  amount: string;
+  invoices: string;
+};
 
-// const [show ,setShow]=useState(false);
-
-// 🧩 Define TypeScript types
-export interface Column {
-  key: string;
+type Column = {
   label: string;
-}
-
-export interface EventItem {
-  eventTitle: string;
-  catagory: string;
-  type: string;
-  date: string;
-  location: string;
-
-  action: string
-  [key: string]: string; // allows dynamic access like item[col.key]
-}
+  key: keyof Event;
+};
 
 interface EventTableProps {
-  columns: Column[];
-  events: EventItem[];
-  mainheading: string
+  Columns: Column[];
+  Event: Event[];
+  mainheading: string;
 }
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-
-
-const Recipts: React.FC<EventTableProps> = ({ columns, events, mainheading }) => {
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const Receipts: React.FC<EventTableProps> = ({
+  Columns,
+  Event,
+  mainheading,
+}) => {
   const [search, setSearch] = useState("");
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
-
-  const filteredEvents = events.filter((e) =>
-    e.eventTitle.toLowerCase().includes(search.toLowerCase())
+  const filteredEvents = Event.filter((e) =>
+    e.user.toLowerCase().includes(search.toLowerCase())
   );
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <div className="flex flex-col w-full px-8">
@@ -81,10 +78,11 @@ const Recipts: React.FC<EventTableProps> = ({ columns, events, mainheading }) =>
               placeholder="Search all events"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              aria-label="Search events"
             />
           </div>
 
-          <div className="flex flex-row gap-3 items-center px-2">
+          <div className="flex flex-row gap-3 items-center px-2 mt-4 md:mt-0">
             <h1 className="text-gray-500 text-[14px]">Show</h1>
             <Select>
               <SelectTrigger className="border px-5 font-semibold text-[16px]">
@@ -102,19 +100,20 @@ const Recipts: React.FC<EventTableProps> = ({ columns, events, mainheading }) =>
 
         {/* 🧾 Table */}
         <div className="mt-10">
-          <Table>
-            <TableHeader>
-              <TableRow className="text-[14px] bg-black/3 rounded-3xl border tracking-tight">
-                {columns.map((col) => (
+          <Table className="">
+            <TableHeader className="">
+              <TableRow className="text-[14px] bg-black/3 w-full tracking-tight border-0">
+                {Columns.map((col) => (
                   <TableHead
                     key={col.key}
                     className={
-                      col.key === "action"
-                        ? " align-middle text-end items-center"
-                        : col.key === "location"
-                          ? "  text-start"
-
-                          : ""
+                      col.key === "invoices"
+                        ? "align-middle rounded-2xl text-end items-center"
+                        : col.key === "amount"
+                        ? "text-start"
+                        : col.key === "purpose"
+                        ? "max-w-[300px] overflow-hidden p-3 whitespace-normal break-words"
+                        : ""
                     }
                   >
                     {col.label}
@@ -124,76 +123,57 @@ const Recipts: React.FC<EventTableProps> = ({ columns, events, mainheading }) =>
             </TableHeader>
 
             <TableBody>
-  {filteredEvents.map((item, id) => (
-    <TableRow key={id} className="text-[14px] font-medium">
-      {columns.map((col) => {
-        const value = item[col.key];
+              {filteredEvents.map((item, id) => (
+                <TableRow key={id} className="text-[14px] font-medium border-b-1">
+                  {Columns.map((col) => {
+                    const value = item[col.key];
+                    if (col.key === "purpose") {
+                      return (
+                        <TableCell
+                          key={col.key}
+                          className="max-w-[300px] overflow-hidden py-5 text-gray-400 whitespace-normal break-words"
+                        >
+                          {value}
+                        </TableCell>
+                      );
+                    }
+                    if (col.key === "invoices") {
+                      return (
+                        <TableCell
+                          key={col.key}
+                          className="text-black underline justify-end flex flex-row gap-3 py-5 items-center"
+                        >
+                          <button
+                            onClick={() => {
+                              setSelectedEvent(item); // ✅ pass row data
+                              setShowPopup(true);
+                            }}
+                            className="underline text-black"
+                          >
+                            {value || "No invoice"}
+                          </button>
+                        </TableCell>
+                      );
+                    }
 
-        if (col.key === "catagory") {
-          return (
-            <TableCell key={col.key} className="py-5">
-              <Badge className="bg-[#E6EF84] px-5 py-1 text-black">
-                {value}
-              </Badge>
-            </TableCell>
-          );
-        }
-
-        if (col.key === "type") {
-          return (
-            <TableCell key={col.key} className="py-5">
-              <Badge
-                className={`${value === "Paid"
-                  ? "bg-[#84DCEF] text-[#1B1C17]"
-                  : "bg-[#EAEAEA] text-[#707070]"
-                  } text-[14px] px-2 `}
-              >
-                {value}
-              </Badge>
-            </TableCell>
-          );
-        }
-
-        if (col.key === "location") {
-          return (
-            <TableCell key={col.key} className="text-start align-middle py-5">
-              {value}
-            </TableCell>
-          );
-        }
-
-        if (col.key === "action") {
-          return (
-            <TableCell
-              key={col.key}
-              className="text-black underline justify-end flex flex-row gap-3 py-5 items-center"
-            >
-              <Link
-                href=""  // ✅ Fixed HERE
-                target="_blank"
-                className="underline text-black"
-              >
-                {value}
-              </Link>
-            </TableCell>
-          );
-        }
-
-        return (
-          <TableCell key={col.key} className="text-gray-500 tracking-tight">
-            {value}
-          </TableCell>
-        );
-      })}
-    </TableRow>
-  ))}
-</TableBody>
+                    return (
+                      <TableCell
+                        key={col.key}
+                        className="text-gray-500 rounded-2xl tracking-tight py-5 "
+                      >
+                        {value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableBody>
           </Table>
 
           {/* 📄 Pagination Footer */}
           <div className="flex flex-row justify-between w-full items-center mt-2">
             <span className="text-[14px] text-gray-400 w-full">
-              Showing 1 to {filteredEvents.length} of {events.length} entries
+              Showing 1 to {filteredEvents.length} of {Event.length} entries
             </span>
 
             <Pagination>
@@ -213,20 +193,22 @@ const Recipts: React.FC<EventTableProps> = ({ columns, events, mainheading }) =>
                   </PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
-                  <PaginationNext
-                    href="#"
-                    className="border border-gray-400"
-                  />
+                  <PaginationNext href="#" className="border border-gray-400" />
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
           </div>
-
-
         </div>
       </div>
+      {showPopup && (
+        <Transaction
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+          data={selectedEvent} // ✅ passing row data
+        />
+      )}
     </div>
   );
 };
 
-export default Recipts;
+export default Receipts;

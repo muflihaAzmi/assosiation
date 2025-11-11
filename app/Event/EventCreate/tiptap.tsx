@@ -2,15 +2,12 @@
 
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import BulletList from "@tiptap/extension-bullet-list"
-import OrderedList from "@tiptap/extension-ordered-list"
-import ListItem from "@tiptap/extension-list-item"
 import { Bold, Italic, ListOrdered, List, Heading1 } from "lucide-react"
 
 const Tiptap = () => {
   const editor = useEditor({
-    extensions: [StarterKit, BulletList, OrderedList, ListItem],
-    content: "<p>Hello World! 🌎️</p>",
+    extensions: [StarterKit], // ✅ Only this needed
+    content: "",
     immediatelyRender: false,
   })
 
@@ -22,7 +19,7 @@ const Tiptap = () => {
       <div className="flex items-center gap-2 mb-3 border-b pb-2">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`p-2 rounded hover:bg-gray-100 ${
+          className={`p-2 rounded hover:bg-gray-100 text-gray-400 ${
             editor.isActive("bold") ? "bg-gray-200" : ""
           }`}
         >
@@ -31,7 +28,7 @@ const Tiptap = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`p-2 rounded hover:bg-gray-100 ${
+          className={`p-2 rounded hover:bg-gray-100 text-gray-400 ${
             editor.isActive("italic") ? "bg-gray-200" : ""
           }`}
         >
@@ -40,7 +37,7 @@ const Tiptap = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={`p-2 rounded hover:bg-gray-100 ${
+          className={`p-2 rounded hover:bg-gray-100 text-gray-400 ${
             editor.isActive("heading", { level: 1 }) ? "bg-gray-200" : ""
           }`}
         >
@@ -49,7 +46,7 @@ const Tiptap = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`p-2 rounded hover:bg-gray-100 ${
+          className={`p-2 rounded hover:bg-gray-100 text-gray-400 ${
             editor.isActive("bulletList") ? "bg-gray-200" : ""
           }`}
         >
@@ -58,7 +55,7 @@ const Tiptap = () => {
 
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`p-2 rounded hover:bg-gray-100 ${
+          className={`p-2 rounded hover:bg-gray-100 text-gray-400 ${
             editor.isActive("orderedList") ? "bg-gray-200" : ""
           }`}
         >

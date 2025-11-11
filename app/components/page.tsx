@@ -1,75 +1,63 @@
+"use client";
 
-"use client"
-import React, { useState } from 'react'
-import Transaction from './[id]/page'
-import EventTable from '../Event/components/Eventtable'
+import Receipts from "./recipts";
 
 function Page() {
-
-
-
-  type EventItem = {
-    eventTitle: string;
-    catagory: string;
-    type: string;
-    date: string;
-    location: string;
-    action: string;
+  type Event = {
+    user: string;
+    purpose: string;
+    transactionID: string;
+    payment: string;
+    Date: string;
+    amount: string;
+    invoices: string;
   };
 
-  type columns = {
+  type Column = {
     label: string;
-    key: keyof EventItem;
+    key: keyof Event;
   };
 
-
-
-  const columns = [
-    { label: "Event Title", key: "eventTitle" },
-    { label: "Category", key: "catagory" },
-    { label: "Type", key: "type" },
-    { label: "Date & Time", key: "date" },
-    { label: "Location", key: "location" },
-
-    { label: "Action", key: "action" },
+  const columns: Column[] = [
+    { label: "User", key: "user" },
+    { label: "Purpose", key: "purpose" },
+    { label: "Transaction ID", key: "transactionID" },
+    { label: "Payment Method", key: "payment" },
+    { label: "Date and Time", key: "Date" },
+    { label: "Amount", key: "amount" },
+    { label: "Invoices", key: "invoices" },
   ];
 
-
-  const events = [
+  const events: Event[] = [
     {
-      eventTitle: "Assosiation Inaugration",
-      catagory: "middle",
-      type: "Free",
-      date: "12/2/3000",
-      location: "Delhi",
-
-      action: "Reservation"
+      user: "Sopia johnson",
+      purpose: "Nomination Payment Completed for Executive Committee Vice President Nomination From",
+      transactionID: "663cd17cb2f08",
+      payment: "paypal",
+      Date: "12/2/3000",
+      amount: "$1000",
+      invoices: "download"
     },
-    {
-      eventTitle: "Annual Meeting",
-      catagory: "middle",
-      type: "Paid",
-      date: "21 Nov, 2023 11:00",
-      location: "Delhi",
-
-      action: "reservation"
+     {
+      user: "sebastin",
+      purpose: "middle",
+      transactionID: "Free",
+      payment: "cash",
+      Date: "12/2/3000",
+      amount: "$10000",
+      invoices: "Download"
     },
   ];
 
   return (
     <div>
-      <EventTable
-        events={events}
-        columns={columns}
+      <Receipts
+        Event={events}
+        Columns={columns}
         mainheading="Upcoming Events"
-
       />
-    
-
-
     </div>
-
-  )
+  );
 }
 
-export default Page
+export default Page;
