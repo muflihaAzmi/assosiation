@@ -124,7 +124,7 @@ function SideBar() {
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-full rounded bg-hovergreen opacity-0 group-hover/hovermenu:opacity-100" />
               <User className="group-hover/hovermenu:text-hovergreen" size={16} />
               <Link
-                href="#"
+                href="/settings"
                 className="group-hover/hovermenu:text-hovergreen text-white font-medium text-[14px]"
               >
               Settings

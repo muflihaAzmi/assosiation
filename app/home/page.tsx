@@ -1,6 +1,6 @@
 "use client";
 
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { MessageCircle, ThumbsUp } from "lucide-react";
@@ -18,7 +18,7 @@ const Home: React.FC = () => {
   const [commentCount, setCommentCount] = useState<number>(0);
   const [commentText, setCommentText] = useState<string>("");
   const [comments, setComments] = useState<Comment[]>([]);
-  const [hidden,sethidden] = useState<boolean>(false)
+  const [hidden, sethidden] = useState<boolean>(false)
 
   const handlePost = (): void => {
     if (postText.trim() === "") {
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
       text: commentText,
       createdAt: new Date().toISOString(),
     };
-    setCommentCount((one)=>one+1);
+    setCommentCount((one) => one + 1);
 
     setComments((prev) => [...prev, newComment]);
     setCommentText("");
@@ -73,45 +73,45 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-  const storedComments = localStorage.getItem("comments");
-  if (storedComments) {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setComments(JSON.parse(storedComments));
-  }
-}, []);
+    const storedComments = localStorage.getItem("comments");
+    if (storedComments) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setComments(JSON.parse(storedComments));
+    }
+  }, []);
 
-useEffect(() => {
-  localStorage.setItem("comments", JSON.stringify(comments));
-}, [comments]);
+  useEffect(() => {
+    localStorage.setItem("comments", JSON.stringify(comments));
+  }, [comments]);
 
 
 
-useEffect(()=>{
-  const storedcounts = localStorage.getItem("counts");
-  if (storedcounts){
-// eslint-disable-next-line react-hooks/set-state-in-effect
-setCommentCount(JSON.parse(storedcounts));
-  }
-},[])
+  useEffect(() => {
+    const storedcounts = localStorage.getItem("counts");
+    if (storedcounts) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setCommentCount(JSON.parse(storedcounts));
+    }
+  }, [])
 
-useEffect(()=>{
-  localStorage.setItem("counts",JSON.stringify(commentCount));
-})
+  useEffect(() => {
+    localStorage.setItem("counts", JSON.stringify(commentCount));
+  })
 
-const hide=(e:React.KeyboardEvent<HTMLTextAreaElement>)=>{
-   if (e.key === "Enter" && !e.shiftKey) {
+  const hide = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
       toast("comment added");
     } else {
       setError("");
       toast("removed");
-      
-    }
-}
 
-function Hidden(){
-   sethidden((prev)=>!prev);
-  
-}
+    }
+  }
+
+  function Hidden() {
+    sethidden((prev) => !prev);
+
+  }
 
   return (
     <div className="p-8">
@@ -141,18 +141,34 @@ function Hidden(){
         <div className="flex justify-between">
           <div className="flex gap-2 items-center">
             <h1 className="text-gray-400">Add to your post:</h1>
-            <label htmlFor="file-upload" className="cursor-pointer flex items-center text-white rounded-full transition">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTgDtbVl_6Yr-5YHmA5BmVpsHe1mamE0Mg1w&s"
-                className="w-5 h-5"
-                alt="icon"
-              />
-              <img
+        
+            <div className="flex ">
+              <label
+                htmlFor="file-upload"
+                className="cursor-pointer flex items-center text-white rounded-full transition"
+              >
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTgDtbVl_6Yr-5YHmA5BmVpsHe1mamE0Mg1w&s"
+                  className="w-5 h-5"
+                  alt="icon"
+                />
+
+              </label>
+              <input id="file-upload" type="file" className="hidden" />
+               <label
+                htmlFor="file-upload"
+                className="cursor-pointer flex items-center text-white rounded-full transition"
+              >
+                 <img
                 src="https://cdn-icons-png.freepik.com/512/2893/2893392.png"
                 className="w-6 h-6 ml-2"
                 alt="icon"
               />
-            </label>
+                
+
+              </label>
+              <input id="file-upload" type="file" className="hidden" />
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -165,7 +181,7 @@ function Hidden(){
         </div>
       </div>
 
-      <div className="bg-white p-5 rounded-3xl border mt-6">
+      <div className="bg-white p-5 rounded-3xl border mt-4">
         <div className="flex items-center pt-8 gap-4 h-[50px]">
           <Image
             src="/profile.png"
@@ -193,35 +209,35 @@ function Hidden(){
           </button>
         </div>
 
-      {hidden&&(
-       <div>
-        {comments.length > 0 && (
-          <ul className="mt-4 space-y-2">
-            {comments.map((c) => (
-              <li key={c.id} className="text-sm text-gray-700 border-b pb-2 p-4">
-                <strong>{new Date(c.createdAt).toLocaleString()}:</strong> {c.text}
-              </li>
-            ))}
-          </ul>
-        )}
+        {hidden && (
+          <div>
+            {comments.length > 0 && (
+              <ul className="mt-4 space-y-2">
+                {comments.map((c) => (
+                  <li key={c.id} className="text-sm text-gray-700 border-b pb-2 p-4">
+                    <strong>{new Date(c.createdAt).toLocaleString()}:</strong> {c.text}
+                  </li>
+                ))}
+              </ul>
+            )}
 
-        </div>
+          </div>
         )}
         <div className="flex items-center gap-2 p-2">
-         <Image
+          <Image
             src="/profile.png"
             alt="Profile image"
             width={30}
             height={10}
             className="rounded-full border-1 border-greencol object-cover"
           />
-        <textarea
-          placeholder="comment something...."
-          className="text-[14px] focus:outline-0 w-full mt-4"
-          value={commentText}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setCommentText(e.target.value)}
-          onKeyDown={handleCommentKeyDown}
-        />
+          <textarea
+            placeholder="comment something...."
+            className="text-[14px] focus:outline-0 w-full mt-4"
+            value={commentText}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setCommentText(e.target.value)}
+            onKeyDown={handleCommentKeyDown}
+          />
         </div>
       </div>
     </div>

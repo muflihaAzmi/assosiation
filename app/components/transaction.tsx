@@ -9,22 +9,34 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+
+
+ type Event = {
+    user: string;
+    purpose: string;
+    transactionID: string;
+    payment: string;
+    Date: string;
+    amount: string;
+    invoices: string;
+  };
+
 type TransactionProps = {
   showPopup: boolean;
   setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
-   
+  data:Event;
 };
 
-function Transaction({ showPopup, setShowPopup, data }:TransactionProps) {
+function Transaction({ setShowPopup, data }:TransactionProps) {
 
     if (!data) return null;  // safety
 
     return (
-        <div className='fixed inset-0 flex items-center justify-center bg-black/40 overflow-scroll z-10 '>
-            <div className='bg-white w-[50%] h-auto px-5 border rounded-2xl mt-20'>
+        <div className='fixed inset-0 flex items-center justify-center bg-black/40 overflow-scroll z-10 h-screen'>
+            <div className='bg-white w-[50%] h-auto px-5 border rounded-2xl md:mt-20 mt-80'>
 
 
-                <div className='flex w-full justify-between border-b-1 py-8'>
+                <div className='flex w-full justify-between border-b-1 py-8 md:flex-row flex-col items-center '>
                     <div className='flex gap-2 items-center'>
                         <button onClick={() => setShowPopup(false)}>
                             <ArrowLeft className="cursor-pointer" />
