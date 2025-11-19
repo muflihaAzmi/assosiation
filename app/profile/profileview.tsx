@@ -43,32 +43,32 @@ function Profileview() {
             </div>
             <div className='flex md:flex-row  flex-col justify-between w-full '>
                 <div className='flex flex-col bg-gray-50 mt-8 md:w-[800px] px-5 rounded-2xl  '>
-                    <div className='flex flex-col gap-4 py-8 border-b-1 '>
+                    <div className='flex flex-col gap-4 py-8 border-b '>
                         <h1 className='text-[18px] font-medium'>Profile Bio</h1>
                         <p className='text-gray-400 text-[14px]'>Hello, I am Sophia Johnson, a seasoned accountant with a wealth of experience in financial management and analysis. I specialize in tax accounting, helping individuals and businesses navigate complex tax codes while optimizing their financial positions.</p>
                     </div>
                     <div className='flex gap-8 py-8 text-[14px]'>
                         <ul className=' font-semibold flex flex-col gap-3'>
                             <li >
-                                Full Name:
+                                Full Name :
                             </li>
                             <li >
-                                Email:
+                                Email :
                             </li>
                             <li>
-                                Phone:
+                                Phone :
                             </li>
 
                             <li>
-                                Batch:
+                                Batch :
                             </li> <li>
-                                Date of Birth:
+                                Date of Birth :
                             </li>
                             <li>
-                                Gender
+                                Gender : 
                             </li>
                             <li>
-                                City:
+                                City :
                             </li>
                         </ul>
                         <ul className='text-gray-400 flex flex-col gap-3'>
@@ -90,9 +90,9 @@ function Profileview() {
                     <div className='text-[14px] py-8 px-5'>
                         <h1 className='text-black font-semibold text-[18px] '>Proffesional Info</h1>
                         <ul className='font-medium flex flex-col gap-2 mt-2'>
-                            <li>Company Name:</li>
-                            <li>Designation:</li>
-                            <li>Office Adress:</li>
+                            <li>Company Name :</li>
+                            <li>Designation :</li>
+                            <li>Office Adress :</li>
 
                         </ul>
                         <ul>

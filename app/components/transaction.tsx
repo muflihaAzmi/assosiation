@@ -24,7 +24,7 @@ import {
 type TransactionProps = {
   showPopup: boolean;
   setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
-  data:Event;
+  data:Event | null;
 };
 
 function Transaction({ setShowPopup, data }:TransactionProps) {
@@ -34,9 +34,7 @@ function Transaction({ setShowPopup, data }:TransactionProps) {
     return (
         <div className='fixed inset-0 flex items-center justify-center bg-black/40 overflow-scroll z-10 h-screen'>
             <div className='bg-white w-[50%] h-auto px-5 border rounded-2xl md:mt-20 mt-80'>
-
-
-                <div className='flex w-full justify-between border-b-1 py-8 md:flex-row flex-col items-center '>
+                <div className='flex w-full justify-between border-b py-8 md:flex-row flex-col items-center '>
                     <div className='flex gap-2 items-center'>
                         <button onClick={() => setShowPopup(false)}>
                             <ArrowLeft className="cursor-pointer" />
@@ -50,9 +48,7 @@ function Transaction({ setShowPopup, data }:TransactionProps) {
                         </button>
                     </div>
                 </div>
-
-
-                <div className='flex flex-row justify-between border-b-1 py-10'>
+                <div className='flex flex-row justify-between border-b py-10'>
                     <div className='font-semibold'>
                         <Handshake className="text-greencol hidden md:block" />
                         {data.transactionID}
@@ -61,8 +57,6 @@ function Transaction({ setShowPopup, data }:TransactionProps) {
                         Paid
                     </div>
                 </div>
-
-
                 <div className='flex w-full justify-between mt-3'>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[18px] font-semibold'>Invoices To</h1>
@@ -77,14 +71,10 @@ function Transaction({ setShowPopup, data }:TransactionProps) {
                         <h1 className='text-[14px] text-gray-400'>Khulna, Bangladesh</h1>
                     </div>
                 </div>
-
-
                 <Table className='mt-5 w-full '>
 
-                    <TableHeader className='border-b-1'>
+                    <TableHeader className='border-b'>
                         <TableCaption className='flex text-[18px] text-black font-semibold '>Invoice Items </TableCaption>
-
-
                         <TableRow>
                             <TableHead className='font-semibold max-w-[300px] text-[14px] overflow-clip p-3'>Type</TableHead>
                             <TableHead className='font-semibold text-[14px]'>Description</TableHead>
@@ -93,22 +83,17 @@ function Transaction({ setShowPopup, data }:TransactionProps) {
                         </TableRow>
 
                     </TableHeader>
-
-
                     <TableBody className='border-b-0'>
                         <TableRow>
-                            <TableCell className='max-w-[300px] overflow-hidden py-5 whitespace-normal break-words'>{data.purpose}</TableCell>
+                            <TableCell className='max-w-[300px] overflow-hidden py-5 whitespace-normal wrap-break-word'>{data.purpose}</TableCell>
                             <TableCell>Payment for Event</TableCell>
                             <TableCell className='text-right py-3'>{data.Date}</TableCell>
                             <TableCell className='text-right py-3'>{data.amount}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
-
-
                 <Table className='mt-10'>
-
-                    <TableHeader className='border-b-1'>
+                    <TableHeader className='border-b'>
                         <TableCaption className='flex text-[18px] text-black font-semibold'>
                             Transaction History
                         </TableCaption>

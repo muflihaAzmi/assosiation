@@ -29,11 +29,9 @@ import {
 
 
 function createEvent() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [value, setValue] = useState("");
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [date, setDate] = React.useState();
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const [date, setDate] = useState<Date | undefined>(undefined);
 
   const dataList = [
     {

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { ChevronDownIcon, X } from "lucide-react";
 
+
 function EditProfile() {
     const [open, SetOpen] = useState(false);
     const formData =[
@@ -146,7 +147,7 @@ function EditProfile() {
                                         <ChevronDownIcon className="size-4 text-gray-500 placeholder:text-gray-400 " />
                                     </SelectTrigger>
                                     <SelectContent className="shadow-md">
-                                        {item.options.map((opt) => {
+                                        {item.options ?? [].map((opt) => {
                                             return (
                                                 <SelectItem key={opt} value={opt}>
                                                     {opt}
@@ -167,7 +168,7 @@ function EditProfile() {
                         </div>
                     ))}
                 </div>
-                <div className="relative md:w-[810px]  w-full mt-3">
+                <div className="relative lg:w-[810px]  w-full mt-3">
                     <label className=" bg-white px-2 sm:px-3 text-gray-400 text-[12px] font-medium  absolute md:-top-3 -top-2   left-5">
                         About me
                     </label>
@@ -181,7 +182,7 @@ function EditProfile() {
                 </div>
 
                 <h1 className="text-[18px] font-semibold mt-2">Contact Info</h1>
-                <div className="grid md:grid-cols-2 md:w-[800px] grid-cols-1 gap-3 mt-2">
+                <div className="grid md:grid-cols-2 lg:w-[800px]  w-full grid-cols-1 gap-3 mt-2">
                     {ContactInfo.map((item, index) => (
                         <div key={index} className=" mt-2 relative ">
                             <label className=" bg-white px-2 sm:px-3 text-gray-400 text-[12px] font-medium  absolute   md:-top-3 -top-2   left-5">
@@ -191,13 +192,13 @@ function EditProfile() {
                                 <input
                                     type="text"
                                     placeholder={item.placeholder}
-                                    className="rounded-xl  w-full lg:max-w-[400px] py-5 px-5  outline-none placeholder:text-gray-400  "
+                                    className="rounded-xl  w-full lg:max-w-[300px] py-5 px-5  outline-none placeholder:text-gray-400  "
                                 />
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-between md:w-[800px] mt-2">
+                <div className="flex justify-between w-full lg:w-[800px] mt-2">
                     <h1 className="text-[18px] font-semibold">Educational Information</h1>
                     <button
                         className=" underline text-[14px] font-medium hover:text-hovergreen transition-colors duration-300"
@@ -244,7 +245,7 @@ function EditProfile() {
                 </div>
 
                 <h1 className="text-[18px] font-semibold ">Professional Info</h1>
-                <div className="grid md:w-[800px] md:grid-cols-2 grid-cols-1 gap-3 mt-2">
+                <div className="grid w-full lg:w-[800px] md:grid-cols-2 grid-cols-1 gap-3 mt-2">
                     {EducationInfo.map((item, index) => (
                         <div
                             key={index}
@@ -266,7 +267,7 @@ function EditProfile() {
                     ))}
                 </div>
                 <h1 className="text-[18px] font-semibold ">Address</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 md:w-[800px] gap-3 mt-2">
+                <div className="grid grid-cols-1 md:grid-cols-2  w-ful lg:w-[800px] gap-3 mt-2">
                     {Address.map((item, index) => (
                         <div
                             key={index}

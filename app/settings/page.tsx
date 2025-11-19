@@ -8,7 +8,7 @@ import Changepasword from './changepasword';
 function Setting() {
   const [currentPage, Setcurrentpage] = useState("profile")
   return (
-    <div className='px-8'>
+    <div className='px-8 mt-2'>
       <h1 className="text-[24px] mt-5 ">Settings</h1>
       <div className='bg-white h-full px-8 border rounded-2xl mt-2'>
         <div className='border-b flex gap-4' >

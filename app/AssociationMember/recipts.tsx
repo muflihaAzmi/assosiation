@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search } from "lucide-react";
+import { Edit, Eye, Search, Trash2 } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -25,51 +25,45 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 
-import Transaction from "./transaction";
-
-
-// 🧩 Type Definitions
-type Event = {
+// 🧩 Type Definitions (updated to match Page.tsx)
+type EventData = {
   user: string;
   purpose: string;
   transactionID: string;
   payment: string;
-  Date: string;
-  amount: string;
-  invoices: string;
+  Action: string;
 };
 
 type Column = {
   label: string;
-  key: keyof Event;
+  key: keyof EventData;
 };
 
 interface EventTableProps {
   Columns: Column[];
-  Event: Event[] ;
+  Event: EventData[];
   mainheading: string;
 }
 
-
-const Receipts: React.FC<EventTableProps> = ({
+const Association: React.FC<EventTableProps> = ({
   Columns,
   Event,
   mainheading,
 }) => {
   const [search, setSearch] = useState("");
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const filteredEvents = Event.filter((e) =>
     e.user.toLowerCase().includes(search.toLowerCase())
   );
-  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <div className="flex flex-col w-full px-8">
       <h1 className="text-[24px] font-medium mt-5">{mainheading}</h1>
 
       <div className="bg-white p-6 border rounded-2xl mt-3">
-       
+        {/* 🔍 Search and Select */}
         <div className="flex sm:flex-row md:justify-between flex-col items-center">
           <div className="h-10 md:w-[300px] w-full flex items-center gap-2 px-4 text-gray-700 border rounded-3xl bg-black/3">
             <Search size={14} />
@@ -99,21 +93,19 @@ const Receipts: React.FC<EventTableProps> = ({
           </div>
         </div>
 
-   
+        {/* 🧾 Table */}
         <div className="mt-10">
-          <Table className="">
-            <TableHeader className="">
-              <TableRow className="text-[14px] bg-black/3 w-full tracking-tight border-0">
+          <Table>
+            <TableHeader>
+              <TableRow className="text-[14px] bg-black/3 tracking-tight border-0">
                 {Columns.map((col) => (
                   <TableHead
                     key={col.key}
                     className={
-                      col.key === "invoices"
-                        ? "align-middle rounded-2xl text-end items-center"
-                        : col.key === "amount"
-                        ? "text-start"
+                      col.key === "Action"
+                        ? "text-end"
                         : col.key === "purpose"
-                        ? "max-w-[300px] overflow-hidden p-3 whitespace-normal wrap-break-word"
+                        ? "max-w-[300px] overflow-hidden p-3 whitespace-normal break-words"
                         : ""
                     }
                   >
@@ -125,34 +117,45 @@ const Receipts: React.FC<EventTableProps> = ({
 
             <TableBody>
               {filteredEvents.map((item, id) => (
-                <TableRow key={id} className="text-[14px] font-medium border-b">
+                <TableRow key={id} className="text-[14px] font-medium border-b-1">
                   {Columns.map((col) => {
                     const value = item[col.key];
+
                     if (col.key === "purpose") {
                       return (
                         <TableCell
                           key={col.key}
-                          className="max-w-[300px] overflow-hidden py-5 text-gray-400 whitespace-normal wrap-break-word"
+                          className="max-w-[300px] overflow-hidden py-5 text-gray-400 whitespace-normal break-words"
                         >
                           {value}
                         </TableCell>
                       );
                     }
-                    if (col.key === "invoices") {
+
+                    if (col.key === "Action") {
                       return (
                         <TableCell
                           key={col.key}
                           className="text-black underline justify-end flex flex-row gap-3 py-5 items-center"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectedEvent(item); // pass row data
-                              setShowPopup(true);
-                            }}
-                            className="underline text-black"
-                          >
-                            {value || "No invoice"}
-                          </button>
+                          <button >
+                      <Edit
+                        size={25}
+                        className="cursor-pointer hover:text-blue-500 border rounded-2xl p-1"
+                      />
+                    </button>
+
+                    <button >
+                      <Trash2
+                        size={25}
+                        className="cursor-pointer hover:text-red-500 border rounded-2xl p-1"
+                      />
+                    </button>
+                    <Eye
+                      size={25}
+                      className="cursor-pointer hover:text-gray-700 border rounded-2xl p-1"
+                    />
+                         
                         </TableCell>
                       );
                     }
@@ -160,7 +163,7 @@ const Receipts: React.FC<EventTableProps> = ({
                     return (
                       <TableCell
                         key={col.key}
-                        className="text-gray-500 rounded-2xl tracking-tight py-5 "
+                        className="text-gray-500 rounded-2xl tracking-tight py-5"
                       >
                         {value}
                       </TableCell>
@@ -171,7 +174,7 @@ const Receipts: React.FC<EventTableProps> = ({
             </TableBody>
           </Table>
 
-     
+          {/* 📄 Pagination footer */}
           <div className="flex flex-row justify-between w-full items-center mt-2">
             <span className="text-[14px] text-gray-400 w-full">
               Showing 1 to {filteredEvents.length} of {Event.length} entries
@@ -201,15 +204,24 @@ const Receipts: React.FC<EventTableProps> = ({
           </div>
         </div>
       </div>
-      {showPopup && (
-        <Transaction
-          showPopup={showPopup}
-          setShowPopup={setShowPopup}
-          data ={selectedEvent} 
-        />
+
+      {/* 🔲 Popup for Action click */}
+      {showPopup && selectedEvent && (
+        <div className="fixed inset-0 bg-black/40 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-xl shadow-lg w-[350px]">
+            <h2 className="text-lg font-semibold mb-2">{selectedEvent.user}</h2>
+            <p className="text-gray-600 mb-4">{selectedEvent.purpose}</p>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-300"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
 };
 
-export default Receipts;
+export default Association;

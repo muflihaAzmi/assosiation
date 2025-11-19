@@ -1,12 +1,11 @@
 import React from "react";
-import Image from "next/image";
 import { Handshake } from "lucide-react";
 
 function LoginPage() {
   return (
     <div>
       <div className="lg:pl-50 w-full">
-        <div className="relative h-[100lvh] lg:w-[450px] md:w-[350px] overflow-hidden">
+        <div className="relative h-lvh lg:w-[450px] md:w-[350px] overflow-hidden">
           <img
             src="/graduation.jpg"
             alt="background"
@@ -14,7 +13,7 @@ function LoginPage() {
           />
           <div className="relative z-10 text-white top-80 md:w-[350px] items-center lg:ml-13 gap-5  px-2 w-full">
             <div className="text-white flex items-center flex-row gap-2">
-              <Handshake className="text-primary hidden md:block" />
+              <Handshake className="text-greencol hidden md:block" />
 
               <h1 className="text-2xl font-bold ">Assosiation</h1>
             </div>

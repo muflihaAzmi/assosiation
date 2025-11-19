@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { MessageCircle, BellDot, User, LogOut, Menu } from "lucide-react";
+import { MessageCircle, BellDot, User, LogOut } from "lucide-react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import {  SidebarTrigger } from "@/components/ui/sidebar";
 import { ChevronDownIcon, } from "lucide-react"
 
 
@@ -19,7 +19,7 @@ function HeaderEvent() {
       <SidebarTrigger className="text-gray-600 border flex items-center " />
 
       <div className="flex items-center gap-3 hidden sm:block">
-        <button className="bg-greencol hover:bg-hovergreen text-[15px] text-black py-2 px-4 rounded-xl font-sansserif">
+        <button className="bg-greencol hover:bg-hovergreen text-[15px] text-black py-3 px-6 rounded-xl font-sansserif">
           Find a member
         </button>
       </div>
@@ -49,7 +49,7 @@ function HeaderEvent() {
             src="/profile.png"
             alt="Profile"
             className="rounded-full w-10 h-10 border"
-          />
+          ></img>
           <div className="hidden md:block">
             <Select>
               <SelectTrigger className="border-none bg-transparent px-2 focus:ring-0 focus:outline-none">

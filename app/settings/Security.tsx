@@ -7,24 +7,24 @@ function Security() {
   const [onn,SetOnn] =useState(false);
   function handleOn() {
     SetOn((toggle) => !toggle);
-    toast.custom((t) => (
+    toast.custom(() => (
     <div className="px-4 py-3 bg-green-800 text-white rounded shadow-lg font-medium flex gap-2">
       <Check className="font-semibold"/> Updated Successfully!
     </div>))
   }
    function handleOnn() {
     SetOnn((toggle) => !toggle);
-    toast.custom((t) => (
+    toast.custom(() => (
     <div className="px-4 py-3 bg-green-800 text-white rounded shadow-lg font-medium flex gap-2">
       <Check className="font-semibold"/> Updated Successfully!
     </div>))
   }
   return (
     <div className="w-[70%]">
-      <div className="flex justify-between py-7 border-b-1">
+      <div className="flex justify-between py-7 border-b">
         <div>
           <h1 className="text-[18px]">Phone Number Verification</h1>
-          <h1 className="text-[14px] text-gray-400">234567890</h1>
+          <h1 className="text-[14px] text-gray-400">+234567890</h1>
         </div>
         <div className="flex items-center gap-3">
           <button className="bg-greencol hover:bg-hovergreen text-[15px] text-black py-3 px-4 rounded-xl font-sansserif">
@@ -32,7 +32,7 @@ function Security() {
           </button>
         </div>
       </div>
-      <div className="flex justify-between py-7 border-b-1">
+      <div className="flex justify-between py-7 border-b">
         <div>
           <h1 className="text-[18px]">Email Adress Verification</h1>
           <h1 className="text-[14px] text-gray-400">alumini@gmail.com</h1>
@@ -43,7 +43,7 @@ function Security() {
           </button>
         </div>
       </div>
-      <div className="flex justify-between py-6 border-b-1">
+      <div className="flex justify-between py-6 border-b">
         <div>
           <h1 className="text-[18px]">Show Email Address in Public Profile</h1>
         </div>
@@ -63,7 +63,7 @@ function Security() {
         
         
       </div>
-       <div className="flex justify-between py-6 border-b-1">
+       <div className="flex justify-between py-6 border-b">
         <div>
           <h1 className="text-[18px]">Show Phone Number in Public Profile</h1>
         </div>

@@ -1,8 +1,7 @@
 import React from 'react'
 import HeaderEvent from './headerEvent';
 import SideBar from './sideBar';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import DashboardLayout from '@/components/hed';
+import { SidebarProvider } from '@/components/ui/sidebar'
 
 
 function Eventlayout({ children }: Readonly<{

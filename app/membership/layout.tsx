@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarProvider } from '@/components/ui/sidebar'
 import SideBar from '../Event/sideBar';
 import HeaderEvent from '../Event/headerEvent';
 

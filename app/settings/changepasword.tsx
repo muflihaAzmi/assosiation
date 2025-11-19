@@ -6,7 +6,7 @@ function Changepasword() {
     return (
         <div className='w-[70%] py-2'>
             <div>
-                <h1 className='text-[18px] mt-10 '>Change Password</h1>
+                <h1 className='text-[18px] mt-10'>Change Password</h1>
                 <h1 className='text-[14px] text-gray-400'>Change or reset your Account Password</h1>
             </div>
             <div className='grid md:grid-cols-2 gap-4 mt-10 grid-cols-1'>
@@ -44,8 +44,6 @@ function Changepasword() {
                 <label className="absolute md:-top-3 left-5 bg-white text-gray-400  px-2 sm:px-3 text-xs text-[12px] font-medium">
                     Confirm Password
                 </label>
-
-            
                 <div className="bg-white border border-gray-200 rounded-xl flex  hover:hovergrren">
                     <input
                         type="text"
@@ -55,8 +53,8 @@ function Changepasword() {
                 </div>
             </div>
             </div>
-            <div className="flex items-center gap-3 hidden sm:block p-5">
-        <button className="bg-greencol hover:bg-hovergreen text-[15px] text-black py-3 font-medium px-6 rounded-sm font-sansserif">
+            <div className=" items-center gap-3 hidden sm:block p-5">
+        <button className="bg-greencol hover:bg-hovergreen text-[15px] text-black py-3 font-medium px-6 rounded-xl ">
           Save Now
         </button>
       </div>

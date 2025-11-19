@@ -1,9 +1,7 @@
+import { SidebarProvider } from '@/components/ui/sidebar';
 import React from 'react'
-
-import { SidebarProvider, } from '@/components/ui/sidebar'
 import SideBar from '../Event/sideBar';
 import HeaderEvent from '../Event/headerEvent';
-import { Toaster } from 'sonner';
 
 
 
@@ -18,7 +16,6 @@ function Eventlayout({ children }: Readonly<{
         <div className='flex flex-col h-full w-full'>
           <HeaderEvent/>
           {children}
-          <Toaster/>
         </div>
         
       </SidebarProvider>

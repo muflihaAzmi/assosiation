@@ -110,21 +110,20 @@ const Home: React.FC = () => {
 
   function Hidden() {
     sethidden((prev) => !prev);
-
   }
 
   return (
     <div className="p-8">
       {/* Create Post Section */}
       <div className="bg-white p-5 rounded-3xl border">
-        <h1 className="text-[18px] font-semibold">Create Post</h1>
+        <h1 className="text-[18px] font-semibold tracking-wide">Create Post</h1>
         <div className="flex items-center pt-8 gap-4 h-[50px]">
           <Image
             src="/profile.png"
             alt="Profile image"
             width={50}
             height={90}
-            className="rounded-full border-1 border-greencol object-cover"
+            className="rounded-full border border-greencol object-cover"
           />
           <h1 className="text-[18px] font-medium text-gray-800">sopia johnson</h1>
         </div>
@@ -188,17 +187,17 @@ const Home: React.FC = () => {
             alt="Profile image"
             width={50}
             height={90}
-            className="rounded-full border-1 border-greencol object-cover"
+            className="rounded-full border border-greencol object-cover"
           />
           <div className="flex flex-col text-start text-[18px] font-medium">
             <span>Sopia johnson</span>
             <span className="text-[10px] text-gray-400">1 year ago</span>
           </div>
         </div>
-        <div className="w-full h-[100px] border-b-1 p-8">
+        <div className="w-full h-[100px] border-b p-8">
           <span className="text-gray-400">whats app</span>
         </div>
-        <div className="flex gap-2 border-b-1 py-2">
+        <div className="flex gap-2 border-b py-2">
           <button onClick={handleLikeClick} className="flex items-center gap-2 text-gray-400 p-1">
             <ThumbsUp className="hover:text-purple-500" />
             {likes}
@@ -229,7 +228,7 @@ const Home: React.FC = () => {
             alt="Profile image"
             width={30}
             height={10}
-            className="rounded-full border-1 border-greencol object-cover"
+            className="rounded-full border border-greencol object-cover"
           />
           <textarea
             placeholder="comment something...."
